@@ -97,6 +97,9 @@ window.onload = function () {
         //edit button
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
+        editButton.onclick = function () {
+          location.href = "edit.html?imdbID=" + movie.imdbID
+        };
         editButton.classList.add("editButton");
         movieElement.append(editButton);
         

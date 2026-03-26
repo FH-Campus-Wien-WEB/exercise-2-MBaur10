@@ -5,25 +5,33 @@ const movieModel = require('./movie-model.js');
 
 const app = express();
 
-// Parse urlencoded bodies
+// Parse JSON form client (for PUT)
 app.use(bodyParser.json()); 
 
-// Serve static content in directory 'files'
+// Serve static content in directory 'files' (index.htm, css, js etc)
 app.use(express.static(path.join(__dirname, 'files')));
 
-// Configure a 'get' endpoint for all movies..
+// 1.2 Endpoint 
 app.get('/movies', function (req, res) {
-  /* Task 1.2. Remove the line below and eturn the movies from 
-     the model as an array */
-  const moviesArray = Object.values(movieModel);
+    const moviesArray = Object.values(movieModel);
   res.json(moviesArray);
 });
 
-// Configure a 'get' endpoint for a specific movie
+// 2.1 'GET' endpoint for specific movie
 app.get('/movies/:imdbID', function (req, res) {
-  /* Task 2.1. Remove the line below and add the 
-    functionality here */
-  res.sendStatus(404)
+  const imdbID = req.params.imdbID;
+  console.log(`Requested movie: ${imdbID}`);
+  
+  const movie = movieModel[imdbID]
+  
+
+  if (movie) {
+    console.log(`Found: ${movie.Title}`)
+    res.json(movie);  //found -> send movie
+  } else {
+    console.log(`Movie ${imdbID} not found`)
+    res.sendStatus(404); //not found -> 404
+  }
 });
 
 /* Task 3.1 and 3.2.
