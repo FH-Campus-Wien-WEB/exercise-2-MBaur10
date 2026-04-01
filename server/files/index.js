@@ -100,7 +100,6 @@ window.onload = function () {
         editButton.onclick = function () {
           location.href = "edit.html?imdbID=" + movie.imdbID
         };
-        editButton.classList.add("editButton");
         movieElement.append(editButton);
         
         //add to movieElement, append to body

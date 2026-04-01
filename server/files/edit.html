@@ -1,14 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Movie</title>
-    <link rel="stylesheet" href="edit.css" />
-    <script src="edit.js"></script>
-  </head>
 
-  <body>
-    <button onclick="location.href='index.html'">Cancel</button>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Movie</title>
+  <link rel="stylesheet" href="edit.css" />
+  <script src="edit.js"></script>
+</head>
+
+<body>
+    <form class="form">
+      <div>
+        <h2> Edit Movie</h2>
+      </div>      
+    <input type="hidden" id="imdbID" <div class="form-group">
+    <div>
+    <label for="Title">Title: </label>
+    <input id="Title" required>
+    </div>
+    <div class="form-group">
+      <label for="Released">Released: </label>
+      <input type="date" id="Released" min="1900-01-01" required>
+    </div>
+    <div class="form-group">
+      <label for="Runtime">Runtime: </label>
+      <input type="number" id="Runtime" min="1">
+    </div>
+    <div class="form-select">
+      <label for="Genres">Genres: </label>
+      <select name="Genres" id="Genres" multiple required>
+        <option value="Action">Action</option>
+        <option value="Animation">Animation</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Biography">Biography</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Crime">Crime</option>
+        <option value="Documentary">Documentary</option>
+        <option value="Drama">Drama</option>
+        <option value="Family">Family</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Film Noir">Film Noir</option>
+        <option value="History">History</option>
+        <option value="Music">Music</option>
+        <option value="Action">Action</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Short Film">Short Film</option>
+        <option value="Sport">Sport</option>
+        <option value="Superhero">Superhero</option>
+        <option value="Thriller">Thriller</option>
+        <option value="War">War</option>
+        <option value="Western">Western</option>
+      </select>
+    </div>
+    <div class="form-text">
+      <label for="Plot">Plot: </label>
+      <textarea name="Plot" id="Plot" rows="5" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="Directors">Directors: </label>
+      <input id="Directors" required placeholder="Ridley Scott,Peter Jackson">
+    </div>
+    <div class="form-group">
+      <label for="Writers">Writers: </label>
+      <input id="Writers" required placeholder="William Davies,Hayao Miyazaki">
+    </div>
+    <div class="form-group">
+      <label for="Actors">Actors: </label>
+      <input type="text" id="Actors">
+    </div>
+    <div>
+      <button class="button" type="button" onclick="location.href='index.html'">Cancel</button>
+      <button class="button" type="button" onclick="putMovie()">Save</button>
+    </div>
+  </form>
+
+</body>
+
 </html>

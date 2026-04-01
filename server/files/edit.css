@@ -1,3 +1,6 @@
+/* Import base for main page similarity */
+@import url('base.css');
+
 @import url(base.css);
 
 input,
@@ -8,4 +11,17 @@ textarea {
 
 div {
   margin: 4px 0px;
+}
+
+body {
+  background-color: #8d72a5;
+}
+
+form {
+  border: 1px solid #453144;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: #DBBBD8;
 }
