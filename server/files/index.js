@@ -30,7 +30,7 @@ window.onload = function () {
 
         const ratingsP = document.createElement("p");
         ratingsP.textContent =
-          `Metascore: ${movie.Metascore} | IMDb: ${movie.imdbRating}`;
+          `Metascore: ${movie.Metascore} | IMDb Rating: ${movie.imdbRating}`;
         ratingsDiv.append(ratingsP);
         dl.append(ratingsDiv);
 

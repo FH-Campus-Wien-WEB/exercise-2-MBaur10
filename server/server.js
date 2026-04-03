@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Serve static content in directory 'files' (index.htm, css, js etc)
 app.use(express.static(path.join(__dirname, 'files')));
 
-// 1.2 Endpoint 
+// 1.2 Endpoint | GET all movies 
 app.get('/movies', function (req, res) {
     const moviesArray = Object.values(movieModel);
   res.json(moviesArray);
@@ -34,14 +34,28 @@ app.get('/movies/:imdbID', function (req, res) {
   }
 });
 
-/* Task 3.1 and 3.2.
-   - Add a new PUT endpoint
-   - Check whether the movie sent by the client already exists 
-     and continue as described in the assignment */
+//PUT endpoint
+     app.put('/movies/:imdbID', (req, res) => {
+      console.log('PUT recieved: ', req.params.imdbID, req.body); //DEBUG
+      const imdbID = req.params.imdbID; //extract ID from URL
+      const updatedMovie = req.body //full movie data from client
+
+      //If movie exists --> update
+      if (movieModel[imdbID]){
+        movieModel[imdbID] = updatedMovie; 
+        console.log('UPDATED: ', imdbID); //DEBUG
+        res.sendStatus(200) //OK
+      }
+      //if movie doesn't exits --> create new
+      else {
+        movieModel[imdbID]= updatedMovie;
+        console.log('CREATED: ', imdbID); //DEBUG
+        res.status(201).json(updatedMovie);
+      }
+     });
 
 app.listen(3000);
 
 console.log("Server now listening on http://localhost:3000/");
-
 console.log("Movies loaded: ", Object.keys(movieModel));
 console.log("Total movies: ", Object.keys(movieModel).length);

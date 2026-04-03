@@ -10,14 +10,25 @@
 </head>
 
 <body>
-    <form class="form">
-      <div>
-        <h2> Edit Movie</h2>
-      </div>      
-    <input type="hidden" id="imdbID" <div class="form-group">
+  <form class="form">
     <div>
-    <label for="Title">Title: </label>
-    <input id="Title" required>
+      <h2> Edit Movie</h2>
+    </div>
+    <input type="hidden" id="imdbID">
+    <div class="form-group">
+      <label for="Title">Title: </label>
+      <input id="Title" required>
+    </div>
+    <div class="form-group">
+      <input type="hidden" id="Poster">
+    </div>
+    <div class="form-group">
+      <label for="Metascore">Metascore: </label>
+      <input type="number" id="Metascore" min="0" max="100" required>
+    </div>
+    <div class="form-group">
+      <label for="imdbRating">IMDb Rating: </label>
+      <input type="number" id="imdbRating" min="0" max="100" required>
     </div>
     <div class="form-group">
       <label for="Released">Released: </label>

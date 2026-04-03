@@ -1,3 +1,4 @@
+//read form server --> write in form
 function setMovie(movie) {
   for (const element of document.forms[0].elements) {
     const name = element.id;
@@ -9,12 +10,17 @@ function setMovie(movie) {
         const option = options[index];
         option.selected = value.indexOf(option.value) >= 0;
       }
+    if (name=="Poster") {
+      element.value=value;
+      document.getElementById("posterImg").src = value;
+    }
     } else {
       element.value = value;
     }
   }
 }
 
+//collect from from --> send to server
 function getMovie() {
   const movie = {};
 
@@ -58,23 +64,28 @@ function getMovie() {
   return movie;
 }
 
+//3.3 put funtion for creating and updating on server
 function putMovie() {
-  /* Task 3.3. 
-    - Get the movie data using getMovie()
-    - Configure the XMLHttpRequest to make a PUT to /movies/:imdbID
-    - Set the 'Content-Type' appropriately for JSON data
-    - Configure the function below as the onload event handler
-    - Send the movie data as JSON
-  */
-
+  //Get the movie data using getMovie()
+  const movie = getMovie();
+  const imdbID = new URLSearchParams(window.location.search).get("imdbID");
+ 
   const xhr = new XMLHttpRequest();
+  //Configure the XMLHttpRequest to make a PUT to /movies/:imdbID
+  xhr.open("PUT", "/movies/" + imdbID);
+  //Set the 'Content-Type' appropriately for JSON data
+  xhr.setRequestHeader("Content-Type", "application/json");
+  //Configure the function below as the onload event handler
   xhr.onload = function () {
-    if (xhr.status == 200 || xhr.status === 204) {
-      location.href = "index.html";
+    if (xhr.status == 200 || xhr.status==201 || xhr.status === 204) {
+      location.href = "index.html"; //back to index
     } else {
       alert("Saving of movie data failed. Status code was " + xhr.status);
     }
   };
+  
+  //Send the movie data as JSON
+  xhr.send(JSON.stringify(movie));
 }
 
 /** Loading and setting the movie data for the movie with the passed imdbID */
